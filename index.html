@@ -19,7 +19,12 @@
       <div class="row justify-content-center">
         <div class="hero col-6 p-3">
           <h1 class="pb-3">To Do App</h1>
-          <input id="todo-title" class="todo-title" type="text" />
+          <input
+            id="todo-title"
+            class="todo-title"
+            placeholder="Enter a task"
+            type="text"
+          />
           <input id="date-picker" class="date-picker" type="date" />
           <button onclick="addTodo()" class="btn btn-primary">Add Todo</button>
           <div id="todo-list" class="todo-list p-5"></div>
@@ -29,15 +34,7 @@
     <script>
       let todos = [];
 
-      render();
-
-      function addTodo() {
-        const textbox = document.getElementById("todo-title");
-        const title = textbox.value;
-
-        const datePicker = document.getElementById("date-picker");
-        const dueDate = datePicker.value;
-
+      function createToDo(title, dueDate) {
         const id = "" + new Date().getTime();
 
         todos.push({
@@ -45,14 +42,8 @@
           dueDate: dueDate,
           id: id,
         });
-
-        render();
       }
-
-      function deleteTodo(event) {
-        const deleteButton = event.target;
-        const idToDelete = deleteButton.id;
-
+      function removeToDo(idToDelete) {
         todos = todos.filter(function (todo) {
           // If the id of this todo matches idToDelete, return false
           // For everything else, return true
@@ -62,6 +53,21 @@
             return true;
           }
         });
+      }
+      function addTodo() {
+        const textbox = document.getElementById("todo-title");
+        const title = textbox.value;
+
+        const datePicker = document.getElementById("date-picker");
+        const dueDate = datePicker.value;
+        createToDo(title, dueDate);
+        render();
+      }
+
+      function deleteTodo(event) {
+        const deleteButton = event.target;
+        const idToDelete = deleteButton.id;
+        removeToDo(idToDelete);
 
         render();
       }
@@ -81,9 +87,13 @@
           deleteButton.id = todo.id;
           deleteButton.className = "btn btn-warning ";
           element.appendChild(deleteButton);
+          const check = document.createElement("input");
+          check.type = "checkbox";
+          element.prepend(check);
 
           const todoList = document.getElementById("todo-list");
           todoList.appendChild(element);
+          check.onchange = checkChange;
         });
       }
     </script>
