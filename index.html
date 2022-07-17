@@ -15,22 +15,63 @@
     ></script>
 
     <body>
-      <div id="todo-list" class="container p-5">
+      
+       <div class="container p-5">
         <input type="search" id="input" />
+         <input type="date" id="date"/>
         <input type="submit" value="Add Todo" class="btn btn-primary" onclick="showTitle()"></button>
+        <div id="todo-list" ></div>
       </div>
       <script>
         let list=[]
-        function showTitle() {
-            let todo=document.getElementById("todo-list")
-          let text = document.getElementById("input").value;
-          list.push(text)
-          let h = document.createElement("h3");
-          h.innerText = text;
+     
+         function showTitle() {
+
           
-          todo.appendChild(h);
-          console.log(list)
+          let text = document.getElementById("input").value;
+            let date=document.getElementById("date").value
+            let id = ""+new Date().getTime()
+          
+          list.push({title:text,date:date,id:id})
+          
+         
+    render()
         }
+        function render(){  let todo=document.getElementById("todo-list")
+             let h = document.createElement("h3");
+                let deletebutton = document.createElement("button")
+                deletebutton.innerText="Delete"
+                list.forEach(function(li){
+                h.innerText =li.title + " " + li.date
+                h.appendChild(deletebutton)
+                todo.appendChild(h);
+                deletebutton.className="btn btn-warning"
+                deletebutton.style="margin : 0 10px;color:white;font-weight:bold"
+                deletebutton.id=li.id
+                
+                })
+              
+                  deletebutton.onclick=deleteToDo  
+           
+
+        }
+          function deleteToDo(event){
+            
+            let idToBeDelete=event.target.id
+            list=list.filter(function(items){
+                if (idToBeDelete===items.id) {
+                    return false
+                }
+                else{
+                    return true
+                }
+                  
+            })
+            
+
+        }
+       
+     
       </script>
     </body>
   </head>
