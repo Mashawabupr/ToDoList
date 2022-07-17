@@ -17,3 +17,9 @@ h1 {
   border-color: #b2cffa;
   box-shadow: 3px 5px 14px #b3d1ff;
 }
+.bot {
+  position: absolute;
+  text-align: center;
+  bottom: 5px;
+  width: 100%;
+}

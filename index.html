@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>My Todo App</title>
@@ -57,9 +58,11 @@
       function addTodo() {
         const textbox = document.getElementById("todo-title");
         const title = textbox.value;
+        textbox.value = "";
 
         const datePicker = document.getElementById("date-picker");
         const dueDate = datePicker.value;
+        datePicker.value = "";
         createToDo(title, dueDate);
         render();
       }
@@ -77,25 +80,30 @@
         document.getElementById("todo-list").innerHTML = "";
 
         todos.forEach(function (todo) {
-          const element = document.createElement("h3");
+          const element = document.createElement("h4");
           element.innerText = todo.title + " " + todo.dueDate;
-
           const deleteButton = document.createElement("button");
           deleteButton.innerText = "Delete";
-          deleteButton.style = "margin-left: 12px ;color:white";
+          deleteButton.style = "color:white";
           deleteButton.onclick = deleteTodo;
           deleteButton.id = todo.id;
+          deleteButton.style = "margin-left:7px";
           deleteButton.className = "btn btn-warning ";
           element.appendChild(deleteButton);
           const check = document.createElement("input");
           check.type = "checkbox";
+          check.style = "margin-right:7px";
           element.prepend(check);
 
           const todoList = document.getElementById("todo-list");
           todoList.appendChild(element);
-          check.onchange = checkChange;
         });
       }
     </script>
+    <p class="bot">
+      ✌️ This app was coded by
+      <a href="https://github.com/Mashawabupr">Mariam Kvirkviia</a>, and is
+      <a href="https://github.com/Mashawabupr/ToDoList">open-sourced</a>
+    </p>
   </body>
 </html>
