@@ -14,12 +14,17 @@
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="style.css" />
     <div class="container p-5">
-      <input id="todo-title" type="text" />
-      <input id="date-picker" type="date" />
-      <button onclick="addTodo()" class="btn btn-primary">Add Todo</button>
-
-      <div id="todo-list"></div>
+      <div class="row justify-content-center">
+        <div class="hero col-6 p-3">
+          <h1 class="pb-3">To Do App</h1>
+          <input id="todo-title" class="todo-title" type="text" />
+          <input id="date-picker" class="date-picker" type="date" />
+          <button onclick="addTodo()" class="btn btn-primary">Add Todo</button>
+          <div id="todo-list" class="todo-list p-5"></div>
+        </div>
+      </div>
     </div>
     <script>
       let todos = [];
@@ -71,10 +76,10 @@
 
           const deleteButton = document.createElement("button");
           deleteButton.innerText = "Delete";
-          deleteButton.style = "margin-left: 12px";
+          deleteButton.style = "margin-left: 12px ;color:white";
           deleteButton.onclick = deleteTodo;
           deleteButton.id = todo.id;
-          deleteButton.className = "btn btn-warning";
+          deleteButton.className = "btn btn-warning ";
           element.appendChild(deleteButton);
 
           const todoList = document.getElementById("todo-list");

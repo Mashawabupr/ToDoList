@@ -1,0 +1,19 @@
+h1 {
+  color: #ffc107;
+}
+.container {
+  text-align: center;
+}
+.todo-title,
+.date-picker {
+  border-radius: 10px;
+  padding: 7px;
+  border: 1px solid;
+}
+.hero {
+  background-color: rgb(218, 243, 253);
+  border-radius: 10px;
+  border: 1px solid;
+  border-color: #b2cffa;
+  box-shadow: 3px 5px 14px #b3d1ff;
+}
